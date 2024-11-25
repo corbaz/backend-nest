@@ -8,6 +8,7 @@
     "type": "git",
     "url": "https://github.com/corbaz/backend-nest"
   },
+  "homepage": "https://nest-backend-2024.vercel.app/",
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
