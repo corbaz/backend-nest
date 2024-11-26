@@ -53,4 +53,9 @@ Manejan conexiones WebSocket. Permiten la comunicación bidireccional en tiempo 
 nest g r <nombre>
 ```
 Procesan operaciones GraphQL. Definen cómo se resuelven las queries y mutations en una API GraphQL.
-```
+
+---
+
+## Guia de NestJS
+
+https://bluuweb.dev/nestjs/crud-mysql.html

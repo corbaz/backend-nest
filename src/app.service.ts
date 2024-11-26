@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    const title = 'La Casa de la Pc - 2024 - MDP';
+  getIndex(): string {
+    const title = 'La Casa de la PC - 2024 - MDP';
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = currentDate.toLocaleString('es', { month: 'long' });
@@ -23,6 +23,7 @@ export class AppService {
     const HEAD = `
       <head>
       <script src="https://cdn.tailwindcss.com"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js"></script>
       <title>${title}</title>
       <link rel="stylesheet" 
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -41,35 +42,35 @@ export class AppService {
           <a
             href="https://www.instagram.com/julio.cesar.corbaz/"
             target="_blank"
-            class="transform hover:scale-110 transition-transform"
+            class="transform hover:scale-150 transition-transform"
           >
             <i class="fab fa-instagram text-2xl hover:text-pink-400"></i>
           </a>
           <a
             href="https://www.linkedin.com/in/julio-corbaz/"
             target="_blank"
-            class="transform hover:scale-110 transition-transform"
+            class="transform hover:scale-150 transition-transform"
           >
             <i class="fab fa-linkedin text-2xl hover:text-blue-400"></i>
           </a>
           <a
             href="https://wa.me/54223544899"
             target="_blank"
-            class="transform hover:scale-110 transition-transform"
+            class="transform hover:scale-150 transition-transform"
           >
             <i class="fab fa-whatsapp text-2xl hover:text-green-400"></i>
           </a>
           <a
             href="https://twitter.com/julio_corbaz"
             target="_blank"
-            class="transform hover:scale-110 transition-transform"
+            class="transform hover:scale-150 transition-transform"
           >
             <i class="fab fa-twitter text-2xl hover:text-blue-300"></i>
           </a>
           <a
             href="https://github.com/corbaz"
             target="_blank"
-            class="transform hover:scale-110 transition-transform"
+            class="transform hover:scale-150 transition-transform"
           >
             <i class="fab fa-github text-2xl hover:text-purple-400"></i>
           </a>
@@ -105,6 +106,31 @@ export class AppService {
       </body>`,
     )}
     </html>`;
+
+    return template;
+  }
+
+  getAbout(): string {
+    const title = 'About';
+
+    const HEAD = `
+            <head>
+                <script src="https://cdn.tailwindcss.com"></script>
+            </head>`;
+
+    const BODY = `
+            <body>
+                <div class="text-4xl font-bold text-center text-blue-600 p-4">
+                ${title}
+                </div>
+            </body>`;
+
+    const template = `
+            <!DOCTYPE html>
+            <html>
+            ${HEAD}
+            ${BODY}
+            </html>`;
 
     return template;
   }
