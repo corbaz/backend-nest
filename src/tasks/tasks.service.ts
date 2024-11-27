@@ -12,7 +12,7 @@ export class TasksService {
 
         const BODY = `
             <body>
-                <div class="text-4xl font-bold text-center text-purple-600 p-4">
+                <div class="text-4xl font-bold text-center text-cyan-600 p-4">
                 ${title}
                 </div>
             </body>`;
