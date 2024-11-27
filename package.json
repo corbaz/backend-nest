@@ -11,6 +11,7 @@
   "homepage": "https://nest-backend-2024.vercel.app/",
   "license": "UNLICENSED",
   "scripts": {
+    "data":"cp data.sqlite dist/data.sqlite",
     "build": "nest build",
     "vercel:prod": "bun run build && vercel --prod",
     "start": "nest start",
