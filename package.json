@@ -11,7 +11,7 @@
   "homepage": "https://nest-backend-2024.vercel.app/",
   "license": "UNLICENSED",
   "scripts": {
-    "build": "nest build ",
+    "build": "nest build",
     "vercel:prod": "bun run build && vercel --prod",
     "start": "nest start",
     "start:dev": "cross-env NODE_ENV=development nest start --watch",
