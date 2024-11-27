@@ -10,6 +10,7 @@ exports.TasksService = void 0;
 const common_1 = require("@nestjs/common");
 let TasksService = class TasksService {
     getTasks() {
+        console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
         const title = 'Service de Tasks - 2024';
         const HEAD = `
             <head>

@@ -14,7 +14,8 @@ const tasks_module_1 = require("./tasks/tasks.module");
 const projects_module_1 = require("./projects/projects.module");
 const auth_module_1 = require("./auth/auth.module");
 const users_module_1 = require("./users/users.module");
-console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+const typeorm_1 = require("@nestjs/typeorm");
+const productos_module_1 = require("./productos/productos.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -25,6 +26,15 @@ exports.AppModule = AppModule = __decorate([
             projects_module_1.ProjectsModule,
             auth_module_1.AuthModule,
             users_module_1.UsersModule,
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'sqlite',
+                database: process.env.NODE_ENV === 'production'
+                    ? 'dist/data.sqlite'
+                    : 'data.sqlite',
+                entities: [__dirname + '/**/*.entity{.ts,.js}'],
+                synchronize: true,
+            }),
+            productos_module_1.ProductosModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
