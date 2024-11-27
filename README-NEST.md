@@ -59,3 +59,6 @@ Procesan operaciones GraphQL. Definen cómo se resuelven las queries y mutations
 ## Guia de NestJS
 
 https://bluuweb.dev/nestjs/crud-mysql.html
+
+## Instala las dependencias de TypeORM y SQLite
+bun install --save @nestjs/typeorm typeorm sqlite3 

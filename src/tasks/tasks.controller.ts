@@ -3,16 +3,14 @@ import { TasksService } from './tasks.service';
 
 @Controller('/tasks')
 export class TasksController {
-    constructor(private TasksService: TasksService) { }
-    
-    @Get('/')
-    getTasks() {
-        return this.TasksService.getTasks();
-    }
-    @Get('/api')
-        
-    getTasksApi() {
-        return this.TasksService.getTasksApi();
-    }
+  constructor(private _tasksService: TasksService) {}
 
+  @Get('/')
+  getTasks() {
+    return this._tasksService.getTasks();
+  }
+  @Get('/api')
+  getTasksApi() {
+    return this._tasksService.getTasksApi();
+  }
 }
