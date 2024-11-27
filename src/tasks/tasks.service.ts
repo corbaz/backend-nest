@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class TasksService {
     getTasks() {
-        const title = 'Service de Task';
+        const title = 'Service de Tasks - 2024';
 
         const HEAD = `
             <head>
