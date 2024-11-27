@@ -7,7 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductosModule } from './productos/productos.module';
-console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+
 @Module({
   imports: [
     TasksModule,
