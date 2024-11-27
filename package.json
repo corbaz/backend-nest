@@ -12,7 +12,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "cross-env NODE_ENV=production nest build && cp data.sqlite dist/data.sqlite",
-    "vercel:prod": "cross-env NODE_ENV=production bun run build && vercel --prod",
+    "vercel:prod": "cross-env NODE_ENV=production bun run build && vercel --prod --skip-domain",
     "start": "cross-env NODE_ENV=production nest start",
     "start:dev": "cross-env NODE_ENV=development nest start --watch",
     "start:debug": "cross-env NODE_ENV=development nest start --debug --watch",
