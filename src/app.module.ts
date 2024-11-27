@@ -16,9 +16,12 @@ console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
     UsersModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'data.sqlite',
+      database:
+        process.env.NODE_ENV === 'production'
+          ? 'dist/data.sqlite'
+          : 'data.sqlite',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true, // Sincroniza automáticamente los cambios en la base de datos (solo en desarrollo)
+      synchronize: true,
     }),
     ProductosModule,
   ],
