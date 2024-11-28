@@ -25,7 +25,7 @@ export class ProductosController {
   @Render('productos') // Renderiza la plantilla productos.hbs
   async findAll() {
     const productos = await this.productosService.findAll();
-    console.log('Productos enviados a la vista:', productos); // Verifica los datos
+    // console.log('Productos enviados a la vista:', productos); // Verifica los datos
     return { productos }; // Asegúrate de devolver un objeto con la clave "productos"
   }
 
