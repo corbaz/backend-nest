@@ -14,7 +14,8 @@
 
 </head>
 
-<body>
+<body class="p-4 md:p-8 lg:p-12 m-4 md:m-8 lg:m-12">
+    
     <header>
         {{> header }} <!-- Uso de un parcial -->
     </header>
@@ -26,6 +27,11 @@
         </li>
         {{/each}}
     </ul>
+    <div class="flex justify-center mt-4">
+        <a href="/" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <i class="fas fa-home"></i> Volver al Home
+        </a>
+    </div>
 </body>
 
 </html>

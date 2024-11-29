@@ -7,12 +7,10 @@ export class AppController {
 
   @Get('/')
   @Render('index')
-  home() {
-    return {}; // Puedes pasar datos adicionales si es necesario
+  getIndex() {
+    return this.appService.getIndex(); // Puedes pasar datos adicionales si es necesario
   }
-  // getHello(): string {
-  //   return this.appService.getIndex();
-  // }
+
   @Get('/about')
   getAbout(): string {
     return this.appService.getAbout();

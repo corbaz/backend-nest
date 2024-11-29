@@ -2,133 +2,106 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  getIndex(): string {
+  // Método para datos de la página de inicio
+  getIndex() {
     const title = 'La Casa de la PC - 2024 - MDP';
     const currentDate = new Date();
     const year = currentDate.getFullYear();
-    const month = currentDate.toLocaleString('es', { month: 'long' });
+    const month = currentDate
+      .toLocaleString('es', { month: 'long' })
+      .toUpperCase();
 
-    interface User {
-      id: number;
-      name: string;
-      email: string;
-    }
-
-    const users: User[] = [
-      { id: 1, name: 'Julio Cesar Corbaz', email: 'julio.corbaz@gmail.com' },
-      { id: 2, name: 'La Casa de la PC', email: 'lacasadelapc@hotmail.com' },
+    const menu = [
+      { text: 'Inicio', url: '/' },
+      { text: 'Productos', url: '/productos' },
+      { text: 'Servicios', url: '/servicios' },
+      { text: 'Contacto', url: '/contacto' },
+      { text: 'Nosotros', url: '/about' },
     ];
 
-    const HEAD = `
-      <head>
-      <script src="https://cdn.tailwindcss.com"></script>
-      <title>${title}</title>
-      <link rel="stylesheet" 
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-      </head>`;
-
-    const BODY = `
-      <body>
-      <div class="text-4xl font-bold text-center text-pink-600 p-4">
-        ${title}
-      </div>
-      </body>`;
-
-    const FOOTER = `
-      <footer class="bg-gradient-to-r from-black to-gray-800 text-white py-6 mt-8">
-        <div class="container mx-auto flex justify-center space-x-6">
-          <a
-            href="https://www.instagram.com/julio.cesar.corbaz/"
-            target="_blank"
-            class="transform hover:scale-150 transition-transform"
-          >
-            <i class="fab fa-instagram text-2xl hover:text-pink-400"></i>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/julio-corbaz/"
-            target="_blank"
-            class="transform hover:scale-150 transition-transform"
-          >
-            <i class="fab fa-linkedin text-2xl hover:text-blue-400"></i>
-          </a>
-          <a
-            href="https://wa.me/54223544899"
-            target="_blank"
-            class="transform hover:scale-150 transition-transform"
-          >
-            <i class="fab fa-whatsapp text-2xl hover:text-green-400"></i>
-          </a>
-          <a
-            href="https://twitter.com/julio_corbaz"
-            target="_blank"
-            class="transform hover:scale-150 transition-transform"
-          >
-            <i class="fab fa-twitter text-2xl hover:text-blue-300"></i>
-          </a>
-          <a
-            href="https://github.com/corbaz"
-            target="_blank"
-            class="transform hover:scale-150 transition-transform"
-          >
-            <i class="fab fa-github text-2xl hover:text-purple-400"></i>
-          </a>
-        </div>
-        <div class="text-center mt-4 text-gray-300">
-          ${month} ${year} - Todos los derechos reservados
-        </div>
-      </footer>
-    `;
-
-    const template = `
-    <!DOCTYPE html>
-    <html lang="es">
-      ${HEAD}
-      ${BODY.replace(
-      '</body>',
-      `
-      <div class="container mx-auto p-4">
-      <div class="grid gap-4">
-        ${users
-        .map(
-          (user) => `
-              <div class="bg-gray-100 p-4 rounded-lg">
-                <h3 class="text-gray-900 font-bold">${user.name}</h3>
-                <p class="text-gray-900">${user.email}</p>
-              </div>
-        `,
-        )
-        .join('')}
-      </div>
-      </div>
-      ${FOOTER}
-      </body>`,
-    )}
-    </html>`;
-
-    return template;
+    return {
+      title,
+      menu,
+      socialLinks: [
+        {
+          icon: 'fab fa-instagram',
+          url: 'https://www.instagram.com/julio.cesar.corbaz/',
+          hoverColor: 'hover:text-pink-400',
+        },
+        {
+          icon: 'fab fa-linkedin',
+          url: 'https://www.linkedin.com/in/julio-corbaz/',
+          hoverColor: 'hover:text-blue-400',
+        },
+        {
+          icon: 'fab fa-whatsapp',
+          url: 'https://wa.me/54223544899',
+          hoverColor: 'hover:text-green-400',
+        },
+        {
+          icon: 'fab fa-twitter',
+          url: 'https://twitter.com/julio_corbaz',
+          hoverColor: 'hover:text-blue-300',
+        },
+        {
+          icon: 'fab fa-github',
+          url: 'https://github.com/corbaz',
+          hoverColor: 'hover:text-purple-400',
+        },
+      ],
+      subtitle: 'Explora nuestros productos y servicios.',
+      currentYear: year,
+      currentMonth: month,
+      features: [
+        {
+          title: 'Envío Rápido',
+          description: 'Logística optimizada para tiempos de entrega rápidos.',
+        },
+        {
+          title: 'Calidad Garantizada',
+          description: 'Ofrecemos solo productos de alta calidad.',
+        },
+        {
+          title: 'Atención al Cliente',
+          description: 'Estamos aquí para ayudarte siempre que lo necesites.',
+        },
+      ],
+    };
   }
 
+  // Método para generar una plantilla HTML para la página "About"
   getAbout(): string {
     const title = 'About';
 
-    const HEAD = `
-            <head>
-                <script src="https://cdn.tailwindcss.com"></script>
-            </head>`;
+    const head = `
+      <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+      </head>
+    `;
 
-    const BODY = `
-            <body>
-                <div class="text-4xl font-bold text-center text-blue-600 p-4">
-                ${title}
-                </div>
-            </body>`;
+    const body = `
+      <body class="bg-gray-100">
+        <div class="text-4xl font-bold text-center text-blue-600 p-4">
+          ${title}
+        </div>
+        <div class="text-lg text-center text-gray-600">
+          Bienvenido a la página de información sobre nosotros.
+        </div>
+        <div class="flex justify-center mt-4">
+            <a href="/" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <i class="fas fa-home"></i> Volver al Home
+            </a>
+        </div>
+      </body>
+    `;
 
     const template = `
-            <!DOCTYPE html>
-            <html>
-            ${HEAD}
-            ${BODY}
-            </html>`;
+      <!DOCTYPE html>
+      <html>
+        ${head}
+        ${body}
+      </html>
+    `;
 
     return template;
   }
