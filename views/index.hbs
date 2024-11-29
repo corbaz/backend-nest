@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio</title>
+    <link rel="stylesheet" href="/styles/output.css"> <!-- Enlace al CSS generado por Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Hero Section -->
+    <header class="bg-blue-600 text-white py-10">
+        <div class="container mx-auto text-center">
+            <h1 class="text-5xl font-bold">Bienvenido a Nuestro Sitio</h1>
+            <p class="text-xl mt-4">Explora nuestros productos y servicios</p>
+            <a href="/productos"
+                class="mt-6 inline-block px-6 py-3 bg-white text-blue-600 rounded-md shadow-md font-semibold hover:bg-gray-200">
+                Ver Productos
+            </a>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="py-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-6">Nuestras Características</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white shadow-md p-6 rounded-md">
+                    <i class="fas fa-truck text-blue-600 text-4xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold mb-2">Envío Rápido</h3>
+                    <p>Recibe tus productos en tiempo récord con nuestra logística optimizada.</p>
+                </div>
+                <div class="bg-white shadow-md p-6 rounded-md">
+                    <i class="fas fa-award text-blue-600 text-4xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold mb-2">Calidad Garantizada</h3>
+                    <p>Solo ofrecemos productos de la más alta calidad.</p>
+                </div>
+                <div class="bg-white shadow-md p-6 rounded-md">
+                    <i class="fas fa-users text-blue-600 text-4xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold mb-2">Atención al Cliente</h3>
+                    <p>Nuestro equipo siempre está disponible para ayudarte.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2023 Mi Aplicación. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,11 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { NestExpressApplication } from '@nestjs/platform-express'; // Importa el tipo NestExpressApplication
+
+// Importa el tipo NestExpressApplication que extiende la aplicación de Nest.js
+import { NestExpressApplication } from '@nestjs/platform-express';
+
 import { join } from 'path';
 import * as hbs from 'hbs';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule); // Declara que usarás NestExpressApplication
+  // Inicializar la aplicación y Declara que usarás NestExpressApplication
+  // en lugar de la aplicación por defecto de Nest.js
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   // Configurar directorio de vistas
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
