@@ -12,7 +12,8 @@ export class AppController {
   }
 
   @Get('/about')
-  getAbout(): string {
+  @Render('about')
+  getAbout() {
     return this.appService.getAbout();
   }
 }
