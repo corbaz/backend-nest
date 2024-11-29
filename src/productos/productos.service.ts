@@ -22,7 +22,7 @@ export class ProductosService {
   // Devuelve todos los productos de la base de datos
   findAll() {
     const productos = this.productoRepository.find();
-    console.log('Productos desde la base de datos:', productos); // Verifica los datos
+    //console.log('Productos desde la base de datos:', productos); // Verifica los datos
     return productos;
   }
 
@@ -39,7 +39,6 @@ export class ProductosService {
   }
 
   // Elimina un producto por su id de la base de datos
-
   remove(id: number) {
     return this.productoRepository.delete({ id });
   }
