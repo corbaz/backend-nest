@@ -80,6 +80,32 @@ bun install --save @nestjs/typeorm typeorm sqlite3
 
 ```bash
 npm install --save hbs @nestjs/serve-static
+
+bun add hbs @nestjs/serve-static
+bun add -d @types/hbs
+
+
+
 ```
 
 ---
+Write-Output ("Build Time: {0:N2} seconds" -f ((Measure-Command { npm run build }).TotalSeconds))
+
+Successfully compiled: 22 files with swc (121.62ms)
+Build Time: 1,82 seconds
+
+PS C:\www\next-nest\backend> Measure-Command { npm run build }
+
+Days              : 0
+Hours             : 0
+Minutes           : 0
+Seconds           : 22
+Milliseconds      : 232
+Ticks             : 222329521
+TotalDays         : 0,000257325834490741
+TotalHours        : 0,00617582002777778
+TotalMinutes      : 0,370549201666667
+TotalSeconds      : 22,2329521
+TotalMilliseconds : 22232,9521
+
+bun i -D @swc/cli @swc/core

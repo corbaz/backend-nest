@@ -1,68 +1,15 @@
 <!-- views/pages/about.hbs -->
-<html lang='en'>
-
-<head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <title>{{title}}</title>
-    <!-- Variable dinámica para el título -->
-    <!--<link rel="stylesheet" href="/styles/output.css"> Enlace al CSS generado por Tailwind -->
-    <script src='https://cdn.tailwindcss.com'></script>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css' />
-</head>
-
-<body class='bg-gray-50'>
-
-    <!-- Hero Section -->
-    <header class='bg-blue-600 text-white py-10'>
-        <div class='container mx-auto text-center'>
-            <h1 class='text-5xl font-bold'>{{empresa}}</h1>
-            <!-- Variable dinámica para el título del Hero -->
-            <p class='text-xl mt-4'>{{subtitle}}</p>
-            <!-- Variable dinámica para el subtítulo -->
-
-            <ul class='mt-6 flex justify-center space-x-4'>
-                {{#each menu}}
-                <li>
-                    <a href='{{this.url}}' class='text-white hover:underline'>{{this.link}}</a>
-                </li>
-                {{/each}}
-            </ul>
-        </div>
-    </header>
-
-    <!-- Features Section -->
-    <section class='py-12'>
-        <div class="text-4xl font-bold text-center text-blue-600 p-4">
-            {{title}}
-        </div>
-        <div class="text-lg text-center text-gray-600">
-            Bienvenido a la página de información sobre nosotros.
-        </div>
-        <div class="flex justify-center mt-4">
-            <a href="/" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                <i class="fas fa-home"></i>Volver al Home
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class='bg-gradient-to-r from-black to-gray-800 text-white py-6 mt-8'>
-        <div class='container mx-auto flex justify-center space-x-6'>
-            {{#each socialLinks}}
-            <a href='{{url}}' target='_blank' class='transform hover:scale-150 transition-transform'>
-                <i class='{{icon}} text-2xl hover:{{hoverColor}}'></i>
-                <!-- Icono e interacción dinámicos -->
-            </a>
+<section class="py-12">
+    <div class="container mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-6">{{title}}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {{#each features}}
+            <div class="bg-white shadow-md p-6 rounded-md">
+                <i class="{{icon}} text-blue-600 text-4xl mb-4"></i>
+                <h3 class="text-2xl font-semibold mb-2">{{title}}</h3>
+                <p>{{description}}</p>
+            </div>
             {{/each}}
         </div>
-        <div class='text-center mt-4 text-gray-300'>Todos los derechos reservados
-            &copy;
-            {{currentMonth}}
-            {{currentYear}}
-        </div>
-    </footer>
-
-</body>
-
-</html>
+    </div>
+</section>

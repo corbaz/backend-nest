@@ -106,6 +106,20 @@ export class AppService {
       subtitle: 'Explora nuestros productos y servicios.',
       currentYear: year,
       currentMonth: month,
+      features: [
+        {
+          title: 'Envío Rápido',
+          description: 'Logística optimizada para tiempos de entrega rápidos.',
+        },
+        {
+          title: 'Calidad Garantizada',
+          description: 'Ofrecemos solo productos de alta calidad.',
+        },
+        {
+          title: 'Atención al Cliente',
+          description: 'Estamos aquí para ayudarte siempre que lo necesites.',
+        },
+      ],
     };
   }
 }

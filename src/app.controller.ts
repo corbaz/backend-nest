@@ -12,8 +12,8 @@ export class AppController {
     return this.appService.getIndex(); // Puedes pasar datos adicionales si es necesario
   }
 
-  @Get('/about')
-  @Render('about')
+  @Get('about')
+  @Render('pages/about')
   getAbout() {
     return this.appService.getAbout();
   }
