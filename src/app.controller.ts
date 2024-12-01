@@ -1,3 +1,4 @@
+// src/app.controller.ts
 import { Controller, Get, Render } from '@nestjs/common';
 import { AppService } from './app.service';
 
@@ -6,7 +7,7 @@ export class AppController {
   constructor(private appService: AppService) {}
 
   @Get('/')
-  @Render('index')
+  @Render('pages/index')
   getIndex() {
     return this.appService.getIndex(); // Puedes pasar datos adicionales si es necesario
   }

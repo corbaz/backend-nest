@@ -1,25 +1,26 @@
+// src/main.ts
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-
-// Importa el tipo NestExpressApplication que extiende la aplicación de Nest.js
 import { NestExpressApplication } from '@nestjs/platform-express';
-
 import { join } from 'path';
 import * as hbs from 'hbs';
+import chalk from 'chalk';
 
 async function bootstrap() {
-  // Inicializar la aplicación y Declara que usarás NestExpressApplication
-  // en lugar de la aplicación por defecto de Nest.js
+  // Crear la aplicación como NestExpressApplication
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  // Configurar directorio de vistas
+  // Configurar motor de vistas como Handlebars
+  app.setViewEngine('hbs');
+  
+  // Configurar carpeta de vistas
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
 
-  // Configurar Handlebars como motor de vistas
-  app.setViewEngine('hbs');
-
-  // Registrar parciales (si usas parciales en Handlebars)
+  // Registrar partials
   hbs.registerPartials(join(__dirname, '..', 'views/partials'));
+
+  // Configurar layout predeterminado
+  app.set('view options', { layout: 'layouts/layouts' });
 
   // Configurar recursos estáticos
   app.useStaticAssets(join(__dirname, '..', 'public'));

@@ -1,3 +1,4 @@
+// src/app.service.ts
 import { Injectable } from '@nestjs/common';
 const empresa = 'La Casa de la PC - 2024 - MDP';
 const currentDate = new Date();
@@ -17,6 +18,7 @@ export class AppService {
   getIndex() {
     const title = 'Home';
     return {
+      title,
       empresa,
       menu,
       socialLinks: [
@@ -71,8 +73,8 @@ export class AppService {
     const title = 'About';
 
     return {
-      empresa,
       title,
+      empresa,
       menu,
       socialLinks: [
         {
