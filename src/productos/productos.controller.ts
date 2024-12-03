@@ -2,62 +2,90 @@ import {
   Controller,
   Get,
   Post,
-  Body,
   Patch,
-  Param,
   Delete,
-  Render,
+  Body,
+  Param,
   Res,
 } from '@nestjs/common';
 import { ProductosService } from './productos.service';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { UpdateProductoDto } from './dto/update-producto.dto';
-
 import { FastifyReply } from 'fastify';
 
 const title = 'Productos';
 
 @Controller('/productos')
 export class ProductosController {
-  constructor(private _productosService: ProductosService) {}
+  constructor(private _productosService: ProductosService) { }
 
   @Get('/')
   async findAll(@Res() reply: FastifyReply) {
     const productos = await this._productosService.findAll();
-
+    const title = 'Productos';
     return reply.view('pages/productos/productos', { title, productos });
   }
 
   @Get(':id')
-  @Render('pages/productos/producto') // Renderiza la plantilla productoDetalle.hbs
-  async findOne(@Param('id') id: string) {
-    // Llama al servicio para obtener el producto
+  async findOne(@Param('id') id: string, @Res() reply: FastifyReply) {
     const producto = await this._productosService.findOne(+id);
 
-    // if (!producto) {
-    //   // Lanza una excepción si el producto no existe
-    //   throw new NotFoundException(`Producto con ID ${id} no encontrado`);
-    // }
+    if (!producto) {
+      return reply
+        .code(404)
+        .send({ error: `Producto con ID ${id} no encontrado` });
+    }
 
-    const title = `Detalles del Producto: ${producto.name}`; // Define un título dinámico
-    return { title, producto }; // Retorna un objeto con el título y el producto
+    const title = `Detalles del Producto: ${producto.name}`;
+    return reply.view('pages/productos/producto', { title, producto });
   }
 
-  @Post()
-  create(@Body() createProductoDto: CreateProductoDto) {
-    return this._productosService.create(createProductoDto);
+  @Post('/')
+  async create(
+    @Body() createProductoDto: CreateProductoDto,
+    @Res() reply: FastifyReply,
+  ) {
+    const producto = await this._productosService.create(createProductoDto);
+
+    // Respuesta personalizada
+    return reply
+      .code(201)
+      .send({ message: 'Producto creado exitosamente', producto });
   }
 
-  @Patch(':id')
-  update(
+  @Patch('/:id')
+  async update(
     @Param('id') id: string,
     @Body() updateProductoDto: UpdateProductoDto,
+    @Res() reply: FastifyReply,
   ) {
-    return this._productosService.update(+id, updateProductoDto);
+    const productoActualizado = await this._productosService.update(
+      +id,
+      updateProductoDto,
+    );
+
+    if (!productoActualizado) {
+      return reply
+        .code(404)
+        .send({ error: `Producto con ID ${id} no encontrado` });
+    }
+
+    return reply.code(200).send({
+      message: 'Producto actualizado exitosamente',
+      producto: productoActualizado,
+    });
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this._productosService.remove(+id);
+  @Delete('/:id')
+  async remove(@Param('id') id: string, @Res() reply: FastifyReply) {
+    const resultado = await this._productosService.remove(+id);
+
+    if (resultado.affected === 0) {
+      return reply
+        .code(404)
+        .send({ error: `Producto con ID ${id} no encontrado` });
+    }
+
+    return reply.code(200).send({ message: 'Producto eliminado exitosamente' });
   }
 }
