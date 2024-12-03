@@ -109,3 +109,19 @@ TotalSeconds      : 22,2329521
 TotalMilliseconds : 22232,9521
 
 bun i -D @swc/cli @swc/core
+
+
+backend/
+├── src/
+│   └── main.ts
+├── views/
+│   ├── layouts/
+│   │   └── layout.hbs
+│   ├── pages/
+│   │   ├── index.hbs
+│   │   └── about.hbs
+│   └── partials/
+│       ├── header.hbs
+│       └── footer.hbs
+├── public/
+│   └── styles.css

@@ -1,0 +1,25 @@
+<!-- views/layouts/layouts.hbs -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Incluir el partial para el head -->
+    {{> head }}
+
+</head>
+
+<body class="p-4 md:p-8 lg:p-12 m-4 md:m-8 lg:m-12">
+    <!-- Incluir el partial para el header -->
+    {{> header }}
+
+    <main>
+        <!-- Aquí se inyectará el contenido dinámico de la vista -->
+        {{{body}}}
+    </main>
+
+    <!-- Incluir el partial para el footer -->
+    {{> footer }}
+
+</body>
+
+</html>

@@ -1,3 +1,6 @@
+// src/productos/productos.service.ts
+// Archivo con la lógica de negocio de la entidad Producto
+// Este archivo contiene la lógica de negocio de la entidad Producto. El servicio ProductosService se encarga de realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en la base de datos. Utiliza el repositorio de la entidad Producto para interactuar con la base de datos y realizar operaciones como crear, leer, actualizar y eliminar productos. El servicio ProductosService se inyecta en el controlador ProductosController para manejar las solicitudes HTTP relacionadas con los productos.
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -8,8 +11,8 @@ import { UpdateProductoDto } from './dto/update-producto.dto';
 @Injectable()
 export class ProductosService {
   constructor(
-    @InjectRepository(Producto)
-    private productoRepository: Repository<Producto>,
+    @InjectRepository(Producto) // Inyecta el repositorio de la entidad Producto
+    private productoRepository: Repository<Producto>, // Define el repositorio de la entidad Producto
   ) {}
 
   // Crea un nuevo producto en la base de datos
@@ -19,14 +22,14 @@ export class ProductosService {
     return this.productoRepository.save(newProducto);
   }
 
-  // Devuelve todos los productos de la base de datos
-  findAll() {
-    const productos = this.productoRepository.find();
-    //console.log('Productos desde la base de datos:', productos); // Verifica los datos
+  // Lee todos los productos de la base de datos
+  async findAll() {
+    const productos = await this.productoRepository.find();
+    console.log('Productos desde la base de datos:', productos); // Verifica los datos
     return productos;
   }
 
-  // Devuelve un producto por su id de la base de datos
+  // Lee un producto por su id de la base de datos
   findOne(id: number) {
     return this.productoRepository.findOne({ where: { id } });
   }

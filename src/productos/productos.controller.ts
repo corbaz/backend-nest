@@ -7,32 +7,45 @@ import {
   Param,
   Delete,
   Render,
+  Res,
 } from '@nestjs/common';
 import { ProductosService } from './productos.service';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { UpdateProductoDto } from './dto/update-producto.dto';
 
-@Controller('productos')
+import { FastifyReply } from 'fastify';
+
+const title = 'Productos';
+
+@Controller('/productos')
 export class ProductosController {
-  constructor(private readonly productosService: ProductosService) {}
+  constructor(private _productosService: ProductosService) {}
 
-  @Post()
-  create(@Body() createProductoDto: CreateProductoDto) {
-    return this.productosService.create(createProductoDto);
-  }
+  @Get('/')
+  async findAll(@Res() reply: FastifyReply) {
+    const productos = await this._productosService.findAll();
 
-  @Get()
-  @Render('productos') // Renderiza la plantilla productos.hbs
-  async findAll() {
-    const productos = await this.productosService.findAll();
-    // console.log('Productos enviados a la vista:', productos); // Verifica los datos
-    return { productos }; // Asegúrate de devolver un objeto con la clave "productos"
+    return reply.view('pages/productos/productos', { title, productos });
   }
 
   @Get(':id')
-  @Render('productoDetalle') // Renderiza la plantilla productoDetalle.hbs
-  findOne(@Param('id') id: string) {
-    return this.productosService.findOne(+id);
+  @Render('pages/productos/producto') // Renderiza la plantilla productoDetalle.hbs
+  async findOne(@Param('id') id: string) {
+    // Llama al servicio para obtener el producto
+    const producto = await this._productosService.findOne(+id);
+
+    // if (!producto) {
+    //   // Lanza una excepción si el producto no existe
+    //   throw new NotFoundException(`Producto con ID ${id} no encontrado`);
+    // }
+
+    const title = `Detalles del Producto: ${producto.name}`; // Define un título dinámico
+    return { title, producto }; // Retorna un objeto con el título y el producto
+  }
+
+  @Post()
+  create(@Body() createProductoDto: CreateProductoDto) {
+    return this._productosService.create(createProductoDto);
   }
 
   @Patch(':id')
@@ -40,11 +53,11 @@ export class ProductosController {
     @Param('id') id: string,
     @Body() updateProductoDto: UpdateProductoDto,
   ) {
-    return this.productosService.update(+id, updateProductoDto);
+    return this._productosService.update(+id, updateProductoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.productosService.remove(+id);
+    return this._productosService.remove(+id);
   }
 }

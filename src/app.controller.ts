@@ -1,20 +1,21 @@
 // src/app.controller.ts
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Res } from '@nestjs/common';
 import { AppService } from './app.service';
+import { FastifyReply } from 'fastify';
 
 @Controller('/')
 export class AppController {
   constructor(private appService: AppService) {}
 
   @Get('/')
-  @Render('pages/index')
-  getIndex() {
-    return this.appService.getIndex(); // Puedes pasar datos adicionales si es necesario
+  async getIndex(@Res() reply: FastifyReply) {
+    const data = this.appService.getIndex();
+    return reply.view('pages/index', data); // Renderiza la plantilla "index.hbs" con datos
   }
 
   @Get('about')
-  @Render('pages/about')
-  getAbout() {
-    return this.appService.getAbout();
+  async getAbout(@Res() reply: FastifyReply) {
+    const data = this.appService.getAbout();
+    return reply.view('pages/about', data); // Renderiza la plantilla "about.hbs" con datos
   }
 }

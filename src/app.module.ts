@@ -7,7 +7,6 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductosModule } from './productos/productos.module';
-import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 
 @Module({
@@ -26,9 +25,6 @@ import { join } from 'path';
       synchronize: true,
     }),
     ProductosModule,
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'), // Directorio para archivos estáticos.
-    }),
   ],
   controllers: [AppController],
   providers: [AppService],

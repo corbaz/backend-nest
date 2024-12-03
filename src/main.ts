@@ -1,33 +1,44 @@
 // src/main.ts
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { NestExpressApplication } from '@nestjs/platform-express';
-import { join } from 'path';
-import * as hbs from 'hbs';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
+import fastifyStatic from '@fastify/static';
+import fastifyView from '@fastify/view';
+import * as handlebars from 'handlebars';
+import * as path from 'path';
 
 async function bootstrap() {
-  // Crear la aplicación como NestExpressApplication
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestFastifyApplication>(
+    AppModule,
+    new FastifyAdapter(),
+  );
 
-  // Configurar carpeta de vistas
-  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  const fastifyInstance = app.getHttpAdapter().getInstance();
 
-  // Registrar partials
-  // hbs.registerPartials(join(__dirname, '..', 'views', 'partials'));
-
-  // Configurar motor de vistas como Handlebars
-  app.setViewEngine('hbs');
-
-  // Configurar layout predeterminado
-  app.set('view options', {
-    layout: 'layouts/layouts',
-    partials: 'partials/',
+  // Configurar motor de vistas
+  fastifyInstance.register(fastifyView, {
+    engine: {
+      handlebars,
+    },
+    root: path.join(__dirname, '..', '/views'),
+    layout: '/layouts/layout.hbs',
+    options: {
+      partials: {
+        head: '/partials/head.hbs',
+        header: '/partials/header.hbs',
+        footer: '/partials/footer.hbs',
+      },
+    },
   });
 
-  // Configurar recursos estáticos
-  app.useStaticAssets(join(__dirname, '..', 'public'));
+  fastifyInstance.register(fastifyStatic, {
+    root: path.join(__dirname, '..', '/public'),
+    prefix: '/public/',
+  });
 
-  // Iniciar el servidor
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
   console.log(`Application is running on: http://localhost:${port}`);

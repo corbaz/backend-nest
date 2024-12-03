@@ -16,9 +16,8 @@ const menu = [
 export class AppService {
   // Método para datos de la página de inicio
   getIndex() {
-    const title = 'Home';
     return {
-      title,
+      title: 'Home',
       empresa,
       menu,
       socialLinks: [
@@ -70,10 +69,8 @@ export class AppService {
 
   // Método para generar una plantilla HTML para la página "About"
   getAbout() {
-    const title = 'About';
-
     return {
-      title,
+      title: 'About',
       empresa,
       menu,
       socialLinks: [
