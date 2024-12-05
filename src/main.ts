@@ -39,8 +39,10 @@ async function bootstrap() {
     prefix: '/public/',
   });
 
-  const port = process.env.PORT ?? 3000;
-  await app.listen(port);
+  const port = process.env.PORT || 3000;
+  const host = process.env.HOST || '0.0.0.0'; // Enlazar a 0.0.0.0 por defecto
+
+  await app.listen(port, host); // Escuchar en host especificado
   console.log(`Application is running on: http://localhost:${port}`);
 }
 bootstrap();
