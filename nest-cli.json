@@ -13,10 +13,14 @@
       {
         "include": "public/**/*",
         "outDir": "dist/public"
+      },
+      {
+        "include": "data.sqlite",
+        "outDir": "dist/"
       }
     ]
   },
   "hooks": {
-    "postbuild": "cp -R views dist/views && cp -R public dist/public"
+    "postbuild": "cp -R views dist/views && cp -R public dist/public && cp data.sqlite dist/data.sqlite"
   }
 }

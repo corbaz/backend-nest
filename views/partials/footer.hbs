@@ -1,13 +1,13 @@
 <!-- views/partials/footer.hbs -->
-<footer class='bg-gradient-to-r from-black to-gray-800 text-white py-6 mt-8'>
-    <div class='container mx-auto flex justify-center space-x-6'>
+<footer class='bg-gradient-to-r from-black to-gray-800 text-white py-2 mt-4'>
+    <div class='container mt-2 mx-auto flex justify-center space-x-6'>
         {{#each socialLinks}}
         <a href='{{url}}' target='_blank' class='transform hover:scale-150 transition-transform'>
             <i class='{{icon}} text-2xl hover:{{hoverColor}}'></i>
         </a>
         {{/each}}
     </div>
-    <div class='text-center mt-4 text-gray-300'>Todos los derechos reservados
+    <div class='text-center mt-2 text-yellow-600'>Todos los derechos reservados
         &copy;
         {{currentMonth}}
         {{currentYear}}
